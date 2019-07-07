@@ -9,7 +9,7 @@ import 'rc-slider/assets/index.css';
 import './Navbar.css';
 
 class Navbar extends Component {
-  state = { format: 'hex', open: 'false' };
+  state = { format: 'hex', open: false };
   handleFormatChange = e => {
     this.setState({ format: e.target.value, open: true });
     this.props.handleChange(e.target.value);
