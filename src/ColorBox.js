@@ -1,19 +1,20 @@
-import React, { Component } from 'react';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { Link } from 'react-router-dom';
-import styles from './styles/ColorBoxStyles';
-import { withStyles } from '@material-ui/styles';
+import React, { Component } from "react";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { Link } from "react-router-dom";
+import styles from "./styles/ColorBoxStyles";
+import { withStyles } from "@material-ui/styles";
 
 class ColorBox extends Component {
   constructor(props) {
     super(props);
     this.state = { copied: false };
+    this.changeCopyState = this.changeCopyState.bind(this);
   }
-  changeCopyState = () => {
+  changeCopyState() {
     this.setState({ copied: true }, () => {
       setTimeout(() => this.setState({ copied: false }), 1500);
     });
-  };
+  }
   render() {
     const {
       name,
@@ -35,8 +36,8 @@ class ColorBox extends Component {
             className={`${classes.copyMessage} ${copied &&
               classes.showMessage}`}
           >
-            <h1>Copied!</h1>
-            <p className={classes.copyText}>{background}</p>
+            <h1>copied!</h1>
+            <p className={classes.copyText}>{this.props.background}</p>
           </div>
           <div>
             <div className={classes.boxContent}>
@@ -54,5 +55,4 @@ class ColorBox extends Component {
     );
   }
 }
-
 export default withStyles(styles)(ColorBox);
