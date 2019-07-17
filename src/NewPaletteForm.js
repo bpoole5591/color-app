@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import classNames from "classnames";
-import { withStyles } from "@material-ui/core/styles";
-import PaletteFormNav from "./PaletteFormNav";
-import ColorPickerForm from "./ColorPickerForm";
-import Drawer from "@material-ui/core/Drawer";
-import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
-import IconButton from "@material-ui/core/IconButton";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import Button from "@material-ui/core/Button";
-import DraggableColorList from "./DraggableColorList";
-import { arrayMove } from "react-sortable-hoc";
-import styles from "./styles/NewPaletteFormStyles";
+import React, { Component } from 'react';
+import classNames from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
+import PaletteFormNav from './PaletteFormNav';
+import ColorPickerForm from './ColorPickerForm';
+import Drawer from '@material-ui/core/Drawer';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import Button from '@material-ui/core/Button';
+import DraggableColorList from './DraggableColorList';
+import { arrayMove } from 'react-sortable-hoc';
+import styles from './styles/NewPaletteFormStyles';
 
 class NewPaletteForm extends Component {
   static defaultProps = {
@@ -42,7 +42,7 @@ class NewPaletteForm extends Component {
   addNewColor(newColor) {
     this.setState({
       colors: [...this.state.colors, newColor],
-      newColorName: ""
+      newColorName: ''
     });
   }
   handleChange(evt) {
@@ -61,10 +61,10 @@ class NewPaletteForm extends Component {
     this.setState({ colors: [...this.state.colors, randomColor] });
   }
   handleSubmit(newPalette) {
-    newPalette.id = newPalette.paletteName.toLowerCase().replace(/ /g, "-");
+    newPalette.id = newPalette.paletteName.toLowerCase().replace(/ /g, '-');
     newPalette.colors = this.state.colors;
     this.props.savePalette(newPalette);
-    this.props.history.push("/");
+    this.props.history.push('/');
   }
   removeColor(colorName) {
     this.setState({
@@ -92,8 +92,8 @@ class NewPaletteForm extends Component {
         />
         <Drawer
           className={classes.drawer}
-          variant='persistent'
-          anchor='left'
+          variant="persistent"
+          anchor="left"
           open={open}
           classes={{
             paper: classes.drawerPaper
@@ -106,22 +106,22 @@ class NewPaletteForm extends Component {
           </div>
           <Divider />
           <div className={classes.container}>
-            <Typography variant='h4' gutterBottom>
+            <Typography variant="h4" gutterBottom>
               Design Your Palette
             </Typography>
             <div className={classes.buttons}>
               <Button
-                variant='contained'
-                color='secondary'
+                variant="contained"
+                color="secondary"
                 onClick={this.clearColors}
                 className={classes.button}
               >
                 Clear Palette
               </Button>
               <Button
-                variant='contained'
+                variant="contained"
                 className={classes.button}
-                color='primary'
+                color="primary"
                 onClick={this.addRandomColor}
                 disabled={paletteIsFull}
               >
@@ -144,8 +144,9 @@ class NewPaletteForm extends Component {
           <DraggableColorList
             colors={colors}
             removeColor={this.removeColor}
-            axis='xy'
+            axis="xy"
             onSortEnd={this.onSortEnd}
+            distance={20}
           />
         </main>
       </div>
